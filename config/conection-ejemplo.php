@@ -1,4 +1,5 @@
 <?php
+// Elimina '-ejemplo' del nombre del archivo y completa los datos de conexión
 $host = 'localhost';
 $db = 'nombre de tu base de datos';
 $user = 'nombre de usuario o root';
