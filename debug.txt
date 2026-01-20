@@ -1,0 +1,23 @@
+LLEGÓ A CREATE PROJECT
+Array
+(
+    [action] => createProject
+    [unit_id] => 1
+    [title] => fefefef
+    [description] => fefefefe
+    [technologies] => PHP, MySql, CSS, JavaScript
+    [external_url] => https://github.com/cristianavendano-code/Suscription-Apps-Web.git
+)
+Array
+(
+    [image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)

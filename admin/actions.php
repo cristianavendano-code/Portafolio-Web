@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Eliminar proyecto
     if ($action === 'delete-project') {
+
         $project_id = intval($_POST['project_id'] ?? 0);
 
         if ($project_id > 0) {
@@ -69,5 +70,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    // Crear nuevo proyecto
+    if ($action === 'createProject') {
+
+        $title = trim($_POST['title'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+        $unit_id = intval($_POST['unit_id'] ?? 0);
+        $technologies = trim($_POST['technologies'] ?? '');
+        $external_url = trim($_POST['external_url'] ?? '');
+        $image = NULL;
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $upload_dir = '../assets/img/uploads/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            $filename = basename($_FILES['image']['name']);
+            $newName = time() . '_' . $filename;
+            $target_file = $upload_dir . $newName;
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                $image = $newName;
+            }
+        }
+
+        try {
+            $stmt = $pdo->prepare("
+                INSERT INTO projects 
+                (title, description, unit_id, technologies, external_url, image) 
+                VALUES (?, ?, ?, ?, ?, ?)
+            ");
+
+            $stmt->execute([
+                $title,
+                $description,
+                $unit_id,
+                $technologies,
+                $external_url,
+                $image
+            ]);
+
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Proyecto creado correctamente.'
+            ];
+
+            header("Location: ../admin/dashboard.php");
+            exit;
+
+        } catch (PDOException $e) {
+            $_SESSION['alert'] = [
+                'type' => 'error',
+                'msg' => 'Error al crear el proyecto: ' . $e->getMessage()
+            ];
+
+            header("Location: ../admin/add-project-form.php");
+            exit;
+        }
+    }
+
 }
 ?>

@@ -82,13 +82,6 @@ function footer() {
 <!-- Bootstrap Bundle JS (incluye Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- JavaScript Personalizado -->
-<script src="<?php echo isset($js_path) ? $js_path : 'assets/js/script.js'; ?>"></script>
-
-<?php if (isset($extra_scripts)): ?>
-<!-- Scripts adicionales de la página -->
-<?php echo $extra_scripts; ?>
-<?php endif; ?>
 </body>
 
 </html>

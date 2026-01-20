@@ -51,7 +51,7 @@ $total_unidades = count(obtenerUnidades($pdo));
                     </p>
                 </div>
                 <div class="col-md-6 text-md-end mt-3 mt-md-0">
-                    <a href="project-form.php" class="btn btn-primary me-2">
+                    <a href="add-project-form.php" class="btn btn-primary me-2">
                         <i class="bi bi-plus-circle me-2"></i>
                         Nuevo Proyecto
                     </a>
@@ -161,8 +161,8 @@ $total_unidades = count(obtenerUnidades($pdo));
                                     <span class="badge bg-secondary">#<?php echo $proyecto['id']; ?></span>
                                 </td>
                                 <td class="align-middle">
-                                    <?php if (!empty($proyecto['image_url'])): ?>
-                                    <img src="../assets/uploads/<?php echo htmlspecialchars($proyecto['image_url']); ?>"
+                                    <?php if (!empty($proyecto['image'])): ?>
+                                    <img src="../assets/img/uploads/<?php echo htmlspecialchars($proyecto['image']); ?>"
                                         class="img-thumbnail" alt="Preview"
                                         style="width: 60px; height: 60px; object-fit: cover;">
                                     <?php else: ?>
